@@ -1,0 +1,522 @@
+/*==================================================
+ROOT
+==================================================*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    /* Noise size 0.5 / density 100% / color #000 at 25%,reused a bunch. */
+    --noise-bg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:"IBM Plex Sans",sans-serif;
+    background:#A6CDEA;
+    color:#1b1b1b;
+    position:relative;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background-image:var(--noise-bg);
+    background-size:120px 120px;
+    mix-blend-mode:overlay;
+    opacity:.6;
+}
+#app{
+    position:relative;
+    z-index:1;
+}
+button,
+textarea,
+input{
+    font:inherit;
+}
+button{
+    cursor:pointer;
+    border:none;
+    background:none;
+}
+img{
+    display:block;
+    max-width:100%;
+}
+/*==================================================
+APP
+==================================================*/
+#app{
+    width:100vw;
+    height:100vh;
+    display:grid;
+    grid-template-columns:
+        270px
+        1fr;
+}
+/*==================================================
+SIDEBAR
+==================================================*/
+#sidebar{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    gap:40px;
+    padding:45px 30px;
+    border-right:
+        2px solid rgba(0,0,0,.08);
+    background:
+        rgba(255,255,255,.15);
+    backdrop-filter:
+        blur(8px);
+}
+#logo{
+    width:50px;
+}
+#sidebar nav{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+.nav-button{
+    width:100%;
+    padding:14px;
+    border-radius:16px;
+    font-size:17px;
+    font-weight:500;
+}
+.nav-button.active{
+    background:white;
+}
+/*==================================================
+CONTENT
+==================================================*/
+#content{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.page{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+.page.active{
+    display:flex;
+}
+/*==================================================
+FRAME
+==================================================*/
+.outer-frame{
+    position:absolute;
+    inset:35px;
+    width:calc(100% - 70px);
+    height:calc(100% - 70px);
+    object-fit:fill;
+    pointer-events:none;
+}
+.inner-frame{
+    position:absolute;
+    inset:65px;
+    width:calc(100% - 130px);
+    height:calc(100% - 130px);
+    object-fit:fill;
+    pointer-events:none;
+}
+/*==================================================
+PAGE BODY
+==================================================*/
+.page-body{
+    position:relative;
+    z-index:5;
+    width:72%;
+    max-width:850px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    text-align:center;
+}
+.page-body h1{
+    font-family:
+        "Patrick Hand",
+        cursive;
+    font-size:64px;
+    font-weight:400;
+}
+.page-body h2{
+    font-family:
+        "Patrick Hand",
+        cursive;
+    font-size:50px;
+    font-weight:400;
+}
+.page-body p{
+    max-width:650px;
+    font-size:18px;
+    line-height:1.75;
+}
+/*==================================================
+INTRO
+==================================================*/
+.hero-flower{
+    width:170px;
+}
+.intro-text{
+    font-size:24px;
+    font-family:
+        "Patrick Hand",
+        cursive;
+}
+#begin-button{
+    margin-top:12px;
+    padding:
+        8px 15px;
+    border-radius:50px;
+    background: #5A531C ;
+    color:white;
+    font-weight:600;
+}
+/*==================================================
+ABOUT
+==================================================*/
+#about-page .page-body{
+    max-width:780px;
+}
+#about-page p{
+    margin-bottom:8px;
+}
+#about-page p:last-child{
+    margin-bottom:0;
+}
+/*==================================================
+TELEPHONE
+==================================================*/
+#telephone-page .page-body{
+    gap:32px;
+}
+#telephone-title{
+    font-size:52px;
+}
+#telephone-message{
+    max-width:520px;
+    min-height:64px;
+    font-size:20px;
+    line-height:1.6;
+}
+/*==================================================
+CASSETTE
+==================================================*/
+#cassette-container{
+    width:360px;
+    height:220px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#cassette{
+    width:100%;
+    max-width:360px;
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+#cassette:hover{
+    transform:
+        rotate(-2deg)
+        scale(1.03);
+    filter:
+        drop-shadow(
+            0 16px 30px
+            rgba(0,0,0,.18)
+        );
+}
+/*==================================================
+TELEPHONE BUTTONS
+==================================================*/
+#telephone-controls{
+    display:flex;
+    gap:18px;
+    align-items:center;
+}
+#primary-action,
+#secondary-action{
+    min-width:170px;
+    padding:
+        16px
+        34px;
+    border-radius:999px;
+    font-weight:600;
+}
+#primary-action{
+    background:white;
+    color:#111;
+}
+#secondary-action{
+    background:transparent;
+    border:
+        2px solid rgba(0,0,0,.12);
+}
+/*==================================================
+GUESTBOOK
+==================================================*/
+#guestbook-page .page-body{
+    max-width:720px;
+}
+#guestbook-form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:10px;
+}
+#guestbook-input{
+    width:100%;
+    min-height:160px;
+    resize:none;
+    border:none;
+    outline:none;
+    padding:24px;
+    border-radius:22px;
+    background:white;
+    font-size:16px;
+    line-height:1.6;
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.08);
+}
+#guestbook-form button{
+    align-self:flex-end;
+    padding:
+        14px
+        34px;
+    border-radius:999px;
+    background:white;
+    font-weight:600;
+}
+/*==================================================
+GUESTBOOK LIST
+==================================================*/
+#guestbook-list{
+    list-style:none;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:30px;
+    max-height:280px;
+    overflow-y:auto;
+}
+.guestbook-entry{
+    background:white;
+    border-radius:18px;
+    padding:18px 22px;
+    line-height:1.7;
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.06);
+}
+.guestbook-text{
+    display:block;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+/*==================================================
+CURSOR LAYER
+==================================================*/
+#cursor-layer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+}
+.remote-cursor{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:
+        left .08s linear,
+        top .08s linear;
+}
+.cursor-dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#1b1b1b;
+    border:2px solid white;
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.15);
+}
+.cursor-name{
+    background:white;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.08);
+}
+/*==================================================
+RECORDINGS
+==================================================*/
+.recording{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 18px;
+    background:white;
+    border-radius:18px;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+}
+.recording-flower{
+    width:42px;
+}
+.recording-label{
+    font-size:15px;
+    font-weight:500;
+}
+/*==================================================
+FOOTER
+==================================================*/
+footer{
+    position:fixed;
+    bottom:18px;
+    right:24px;
+    z-index:10;
+    font-size:13px;
+    opacity:.6;
+}
+/*==================================================
+SCROLLBAR
+==================================================*/
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background:transparent;
+}
+::-webkit-scrollbar-thumb{
+    background:
+        rgba(0,0,0,.15);
+    border-radius:100px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background:
+        rgba(0,0,0,.25);
+}
+/*==================================================
+ANIMATIONS
+==================================================*/
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+.page.active{
+    animation:
+        fadeIn .35s ease;
+}
+/*==================================================
+UTILITY
+==================================================*/
+.hidden{
+    display:none !important;
+}
+.fade{
+    opacity:.5;
+}
+.center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.full-width{
+    width:100%;
+}
+.text-center{
+    text-align:center;
+}
+/*==================================================
+RESPONSIVE
+==================================================*/
+@media (max-width:1100px){
+    #app{
+        grid-template-columns:
+            220px
+            1fr;
+    }
+    .page-body{
+        width:84%;
+    }
+    #cassette-container{
+        width:300px;
+    }
+    .page-body h1{
+        font-size:52px;
+    }
+    .page-body h2{
+        font-size:42px;
+    }
+}
+@media (max-width:900px){
+    body{
+        overflow:auto;
+    }
+    #app{
+        display:flex;
+        flex-direction:column;
+    }
+    #sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:
+            2px solid rgba(0,0,0,.08);
+    }
+    #content{
+        min-height:100vh;
+    }
+    .page{
+        position:relative;
+        min-height:100vh;
+    }
+    .outer-frame,
+    .inner-frame{
+        display:none;
+    }
+    .page-body{
+        width:92%;
+        padding:40px 0;
+    }
+    #telephone-controls{
+        flex-direction:column;
+        width:100%;
+    }
+    #primary-action,
+    #secondary-action{
+        width:100%;
+    }
+    #cassette-container{
+        width:240px;
+    }
+}

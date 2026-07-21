@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title> Retold: Game of Telephone </title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body data-page="intro">
+
+    <div id="cursor-layer"></div>
+
+    <main id="app">
+
+        <!-- ================================================= -->
+        <!-- Navigation -->
+        <!-- ================================================= -->
+
+        <aside id="sidebar">
+
+            <img
+                src="assets/Retold Icon.svg"
+                id="logo"
+                alt="Flower Logo">
+
+            <nav>
+
+                <button
+                    class="nav-button active"
+                    data-page="intro">
+                    home
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="about">
+
+                    hear the making
+
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="telephone">
+
+                    whisper or listen
+
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="guestbook">
+
+                    guestbook
+
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- ================================================= -->
+        <!-- Content -->
+        <!-- ================================================= -->
+
+        <section id="content">
+
+            <!-- ============================================= -->
+            <!-- INTRO PAGE -->
+            <!-- ============================================= -->
+
+            <section
+                class="page active"
+                id="intro-page">
+
+                <img
+                    class="outer-frame"
+                    src="assets/Outer Frame.svg"
+                    alt="">
+
+                <img
+                    class="inner-frame"
+                    src="assets/Inner Frame for About This Site Page.svg"
+                    alt="">
+
+                <div class="page-body">
+
+                    <img
+                        src="assets/flower.svg"
+                        class="hero-flower"
+                        alt="">
+
+                    <h1>
+                        Retold: A game of Telephone
+
+                    </h1>
+
+                    <p class="intro-text">
+
+                        A collaborative listening experience
+                        inspired by the classic game Telephone.
+
+                    </p>
+
+                    <button
+                        id="begin-button">
+
+                        hell yeah
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- ============================================= -->
+            <!-- ABOUT PAGE -->
+            <!-- ============================================= -->
+
+            <section
+                class="page"
+                id="about-page">
+
+                <img
+                    class="outer-frame"
+                    src="assets/Outer Frame.svg"
+                    alt="">
+
+                <img
+                    class="inner-frame"
+                    src="assets/Inner Frame for About This Site Page.svg"
+                    alt="">
+
+                <div class="page-body">
+
+                    <h2>
+
+                        About
+
+                    </h2>
+
+                    <p>
+
+                        Retold is a collaborative
+                        listening experience inspired by the
+                        classic game Telephone.
+
+                    </p>
+
+                    <p>
+
+                        Every recording is heard only once before
+                        being recreated from memory by another
+                        visitor.
+
+                    </p>
+
+                    <p>
+
+                        After the third listener,
+                        the recording disappears forever.
+
+                    </p>
+
+                    <p>
+
+                        Every voice exists only through
+                        the memory of another person.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- ============================================= -->
+            <!-- TELEPHONE PAGE -->
+            <!-- ============================================= -->
+
+            <section
+                class="page"
+                id="telephone-page">
+
+                <img
+                    class="outer-frame"
+                    src="assets/Outer Frame.svg"
+                    alt="">
+
+                <img
+                    class="inner-frame"
+                    src="assets/Inner Frame for Listen and Whisper or Speak Pages.svg"
+                    alt="">
+
+                <div class="page-body">
+
+                    <h2
+                        id="telephone-title">
+
+                        Speak
+
+                    </h2>
+
+                    <p
+                        id="telephone-message">
+
+                        Where do you go to be yourself?
+
+                    </p>
+
+                    <div id="cassette-container">
+
+                        <img
+                            src="assets/mixtape.svg"
+                            id="cassette"
+                            alt="Mixtape">
+
+                    </div>
+
+                    <div id="telephone-controls">
+
+                        <button
+                            id="primary-action">
+
+                            Record
+
+                        </button>
+
+                        <button
+                            id="secondary-action">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+         
+            <section
+                class="page"
+                id="guestbook-page">
+
+                <img
+                    class="outer-frame"
+                    src="assets/Outer Frame.svg"
+                    alt="">
+
+                <img
+                    class="inner-frame"
+                    src="assets/Inner Frame for Guestbook and Gather to listen pages.svg"
+                    alt="">
+
+                <div class="page-body">
+
+                    <h2>
+
+                        reflect/traces
+
+                    </h2>
+
+                    <p>
+                        Leave a trace.
+                    </p>
+                    <form id="guestbook-form">
+
+                        <input
+                            id="guestbook-name"
+                            type="text"
+                            maxlength="30"
+                            placeholder="Your name"
+                            required
+                        >
+
+                        <textarea
+                            id="guestbook-input"
+                            maxlength="120"
+                            placeholder="what is your fav game from your childhood? who was your first friend? share anything you want to, yk stuff that makes the dinner table instantly awkward..."
+                            required
+                        ></textarea>
+
+                        <button type="submit">
+                            send inter to ether (kidding)
+                        </button>
+
+</form>
+
+<ul id="guestbook-list"></ul>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================================= -->
+    <!-- Hidden Templates -->
+    <!-- ============================================= -->
+
+    <template
+        id="guestbook-template">
+
+        <li
+            class="guestbook-entry">
+
+            <span
+                class="guestbook-text">
+
+            </span>
+
+        </li>
+
+    </template>
+
+
+    <template
+        id="cursor-template">
+
+        <div
+            class="remote-cursor">
+
+            <div
+                class="cursor-dot">
+
+            </div>
+
+            <span
+                class="cursor-name">
+
+            </span>
+
+        </div>
+
+    </template>
+
+
+    <template
+        id="recording-template">
+
+        <article
+            class="recording">
+
+            <img
+
+                src="assets/Flower.svg"
+
+                class="recording-flower"
+
+                alt="">
+
+            <p
+                class="recording-label">
+
+            </p>
+
+        </article>
+
+    </template>
+
+
+    <!-- ============================================= -->
+    <!-- Footer -->
+    <!-- ============================================= -->
+
+    <footer>
+
+        <p>
+
+            made in kashmir
+        </p>
+
+    </footer>
+
+
+    <!-- ============================================= -->
+    <!-- Scripts -->
+    <!-- ============================================= -->
+
+    <script
+        type="module"
+
+        src="js/main.js">
+
+    </script>
+
+</body>
+
+</html>
